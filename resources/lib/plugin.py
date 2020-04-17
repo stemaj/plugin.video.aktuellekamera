@@ -20,8 +20,10 @@ plugin = routing.Plugin()
 def loadHeuteJournal():
     a = read.load_url("https://www.zdf.de/nachrichten/heute-journal")
     b = main.getCurrentHeuteJournalLink(a)
-    c = main.getCurrentHeuteJournalJson(b)
-    return main.HeuteJournal(main.getCurrentHeuteJournalTitle(b), main.getCurrentHeuteJournalMp4(c))
+    c = read.load_url(b)
+    d = main.getCurrentHeuteJournalJson(c)
+    e = read.load_url(d)
+    return main.HeuteJournal(main.getCurrentHeuteJournalTitle(c), main.getCurrentHeuteJournalMp4(e))
 
 @plugin.route('/')
 def index():
@@ -29,18 +31,18 @@ def index():
     hj = loadHeuteJournal()
     addDirectoryItem(plugin.handle, hj.mp4link, ListItem(hj.name))
 
-    addDirectoryItem(plugin.handle, plugin.url_for(
-        show_category, "one"), ListItem("Category One"), True)
-    addDirectoryItem(plugin.handle, plugin.url_for(
-        show_category, "two"), ListItem("Category Two"), True)
+#    addDirectoryItem(plugin.handle, plugin.url_for(
+#        show_category, "one"), ListItem("Category One"), True)
+#    addDirectoryItem(plugin.handle, plugin.url_for(
+#        show_category, "two"), ListItem("Category Two"), True)
     endOfDirectory(plugin.handle)
 
 
-@plugin.route('/category/<category_id>')
-def show_category(category_id):
-    addDirectoryItem(
-        plugin.handle, "", ListItem("Hello category %s!" % category_id))
-    endOfDirectory(plugin.handle)
+#@plugin.route('/category/<category_id>')
+#def show_category(category_id):
+#    addDirectoryItem(
+#        plugin.handle, "", ListItem("Hello category %s!" % category_id))
+#    endOfDirectory(plugin.handle)
 
 def run(argv):
     plugin.run(argv=argv)
