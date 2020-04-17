@@ -25,11 +25,20 @@ def loadHeuteJournal():
     e = read.load_url(d)
     return main.HeuteJournal(main.getCurrentHeuteJournalTitle(c), main.getCurrentHeuteJournalMp4(e))
 
+def loadHeuteXpress():
+    c = read.load_url("https://www.zdf.de/nachrichten/heute-sendungen/videos/heute-xpress-aktuelle-sendung-100.html")
+    d = main.getCurrentHeuteJournalJson(c)
+    e = read.load_url(d)
+    return main.HeuteJournal("heute Xpress", main.getCurrentHeuteJournalMp4(e))
+
 @plugin.route('/')
 def index():
 
     hj = loadHeuteJournal()
     addDirectoryItem(plugin.handle, hj.mp4link, ListItem(hj.name))
+
+    hx = loadHeuteXpress()
+    addDirectoryItem(plugin.handle, hx.mp4link, ListItem(hx.name))
 
 #    addDirectoryItem(plugin.handle, plugin.url_for(
 #        show_category, "one"), ListItem("Category One"), True)

@@ -7,3 +7,6 @@ https://www.zdf.de/nachrichten/heute-journal/heute-journal-vom-16-april-2020-100
 file.002
 https://api.zdf.de/tmd/2/zdf_pd_download_1/vod/ptmd/mediathek/200416_sendung_hjo
 
+file.003
+https://www.zdf.de/nachrichten/heute-sendungen/videos/heute-xpress-aktuelle-sendung-100.html
+

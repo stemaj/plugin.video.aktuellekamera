@@ -21,3 +21,9 @@ class Test_ParseFiles(unittest.TestCase):
         c = main.getCurrentHeuteJournalMp4(a)
         self.assertEqual(c, "https://downloadzdf-a.akamaihd.net/mp4/zdf/20/04/200416_sendung_hjo/4/200416_sendung_hjo_3328k_p15v15.mp4")
 
+    def test_file003(self):
+        a = read.load_file('003')
+        c = main.getCurrentHeuteJournalJson(a)
+        self.assertEqual(c,"https://api.zdf.de/tmd/2/zdf_pd_download_1/vod/ptmd/mediathek/200417_1949_hko")
+
+
