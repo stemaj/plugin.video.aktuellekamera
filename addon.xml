@@ -9,8 +9,8 @@
         <provides>video</provides>
     </extension>
     <extension point="xbmc.addon.metadata">
-        <summary lang="en_GB">Schau dir die gerade aktuell verfügbarste Nachrichtensendung an.</summary>
-        <description lang="en_GB"></description>
+        <summary lang="de_DE">Schau dir die gerade aktuell verfügbarste Nachrichtensendung an.</summary>
+        <description lang="de_DE">Schau dir die gerade aktuell verfügbarste Nachrichtensendung an.</description>
         <language></language>
         <platform>all</platform>
         <license>MIT</license>
