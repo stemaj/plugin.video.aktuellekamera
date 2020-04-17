@@ -1,0 +1,109 @@
+{
+   "attributes" : {
+      "profile" : "http://zdf.de/rels/streams/ptmd/attributes"
+   },
+   "basename" : "200416_sendung_hjo",
+   "captions" : [
+      {
+         "class" : "hoh",
+         "format" : "ebu-tt-d-basic-de",
+         "language" : "deu",
+         "offset" : 0,
+         "profile" : "http://zdf.de/rels/streams/ptmd/caption",
+         "uri" : "https://utstreaming.zdf.de/mtt/zdf/20/04/200416_sendung_hjo/4/heute_journal_160420.xml"
+      },
+      {
+         "class" : "hoh",
+         "format" : "webvtt",
+         "language" : "deu",
+         "offset" : 0,
+         "profile" : "http://zdf.de/rels/streams/ptmd/caption",
+         "uri" : "https://utstreaming.zdf.de/mtt/zdf/20/04/200416_sendung_hjo/4/heute_journal_160420.vtt"
+      }
+   ],
+   "documentVersion" : 2,
+   "mandant" : "mediathek",
+   "playerId" : "zdf_pd_download_1",
+   "priorityList" : [
+      {
+         "formitaeten" : [
+            {
+               "facets" : [],
+               "isAdaptive" : false,
+               "mimeType" : "video/mp4",
+               "profile" : "http://zdf.de/rels/streams/ptmd/priority-list-item/formitaet",
+               "qualities" : [
+                  {
+                     "audio" : {
+                        "profile" : "http://zdf.de/rels/streams/ptmd/priority-list-item/formitaet/quality/audio",
+                        "tracks" : [
+                           {
+                              "cdn" : "akamai",
+                              "class" : "main",
+                              "filesize" : "613118901",
+                              "language" : "deu",
+                              "profile" : "http://zdf.de/rels/streams/ptmd/priority-list-item/formitaet/quality/audio/track",
+                              "uri" : "https://downloadzdf-a.akamaihd.net/mp4/zdf/20/04/200416_sendung_hjo/4/200416_sendung_hjo_3328k_p15v15.mp4"
+                           }
+                        ]
+                     },
+                     "hd" : true,
+                     "mimeCodec" : "avc1.640028, mp4a.40.2",
+                     "profile" : "http://zdf.de/rels/streams/ptmd/priority-list-item/formitaet/quality",
+                     "quality" : "hd"
+                  },
+                  {
+                     "audio" : {
+                        "profile" : "http://zdf.de/rels/streams/ptmd/priority-list-item/formitaet/quality/audio",
+                        "tracks" : [
+                           {
+                              "cdn" : "akamai",
+                              "class" : "main",
+                              "filesize" : "297559453",
+                              "language" : "deu",
+                              "profile" : "http://zdf.de/rels/streams/ptmd/priority-list-item/formitaet/quality/audio/track",
+                              "uri" : "https://downloadzdf-a.akamaihd.net/mp4/zdf/20/04/200416_sendung_hjo/4/200416_sendung_hjo_1628k_p13v15.mp4"
+                           }
+                        ]
+                     },
+                     "hd" : false,
+                     "mimeCodec" : "avc1.4d401f, mp4a.40.2",
+                     "profile" : "http://zdf.de/rels/streams/ptmd/priority-list-item/formitaet/quality",
+                     "quality" : "veryhigh"
+                  },
+                  {
+                     "audio" : {
+                        "profile" : "http://zdf.de/rels/streams/ptmd/priority-list-item/formitaet/quality/audio",
+                        "tracks" : [
+                           {
+                              "cdn" : "akamai",
+                              "class" : "main",
+                              "filesize" : "150864248",
+                              "language" : "deu",
+                              "profile" : "http://zdf.de/rels/streams/ptmd/priority-list-item/formitaet/quality/audio/track",
+                              "uri" : "https://downloadzdf-a.akamaihd.net/mp4/zdf/20/04/200416_sendung_hjo/4/200416_sendung_hjo_808k_p11v15.mp4"
+                           }
+                        ]
+                     },
+                     "hd" : false,
+                     "mimeCodec" : "avc1.4d401f, mp4a.40.2",
+                     "profile" : "http://zdf.de/rels/streams/ptmd/priority-list-item/formitaet/quality",
+                     "quality" : "high"
+                  }
+               ],
+               "type" : "h264_aac_mp4_http_na_na"
+            }
+         ],
+         "profile" : "http://zdf.de/rels/streams/ptmd/priority-list-item"
+      }
+   ],
+   "profile" : "http://zdf.de/rels/streams/ptmd",
+   "scrubPreview" : {
+      "ImageInterval" : "2000",
+      "ImageUrlScheme" : "https://pvstreaming.zdf.de/none/img/zdf/20/04/200416_sendung_hjo/4/scrubpreview/200416_sendung_hjo_%index%.jpg",
+      "ImagesPerColumn" : "5",
+      "ImagesPerRow" : "5"
+   },
+   "self" : "/tmd/2/zdf_pd_download_1/vod/ptmd/mediathek/200416_sendung_hjo/4",
+   "version" : 4
+}

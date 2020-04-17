@@ -1,0 +1,9 @@
+file.000
+https://www.zdf.de/nachrichten/heute-journal
+
+file.001
+https://www.zdf.de/nachrichten/heute-journal/heute-journal-vom-16-april-2020-100.html
+
+file.002
+https://api.zdf.de/tmd/2/zdf_pd_download_1/vod/ptmd/mediathek/200416_sendung_hjo
+

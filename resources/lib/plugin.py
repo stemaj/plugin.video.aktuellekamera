@@ -8,6 +8,8 @@ from resources.lib import kodilogging
 from xbmcgui import ListItem
 from xbmcplugin import addDirectoryItem, endOfDirectory
 
+from resources.lib import main
+from resources.lib import read
 
 ADDON = xbmcaddon.Addon()
 logger = logging.getLogger(ADDON.getAddonInfo('id'))
@@ -15,8 +17,18 @@ kodilogging.config()
 plugin = routing.Plugin()
 
 
+def loadHeuteJournal():
+    a = read.load_url("https://www.zdf.de/nachrichten/heute-journal")
+    b = main.getCurrentHeuteJournalLink(a)
+    c = main.getCurrentHeuteJournalJson(b)
+    return main.HeuteJournal(main.getCurrentHeuteJournalTitle(b), main.getCurrentHeuteJournalMp4(c))
+
 @plugin.route('/')
 def index():
+
+    hj = loadHeuteJournal()
+    addDirectoryItem(plugin.handle, hj.mp4link, ListItem(hj.name))
+
     addDirectoryItem(plugin.handle, plugin.url_for(
         show_category, "one"), ListItem("Category One"), True)
     addDirectoryItem(plugin.handle, plugin.url_for(
