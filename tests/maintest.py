@@ -16,7 +16,7 @@ class Test_ParseFiles(unittest.TestCase):
         c = main.getCurrentHeuteJournalJson(a)
         self.assertEqual(c,"https://api.zdf.de/tmd/2/zdf_pd_download_1/vod/ptmd/mediathek/200416_sendung_hjo")
         d = main.getCurrentHeuteJournalAge(a)
-        self.assertEqual(d[:9],"Uploaded ")
+        self.assertEqual(d[:15],"Erschienen vor ")
 
     def test_file002(self):
         a = read.load_file('002')
