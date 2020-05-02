@@ -4,3 +4,5 @@ v0.0.2
 - added heute Xpress
 v0.0.3
 - added heute, availability check
+v0.0.4
+- api header

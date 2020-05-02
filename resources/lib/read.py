@@ -9,7 +9,9 @@ def load_file(fileSuffix):
     return data
 
 def load_url(url):
-    http = urllib3.PoolManager(maxsize=10, cert_reqs='CERT_NONE')
+    http = urllib3.PoolManager(maxsize=10, cert_reqs='CERT_NONE', headers={
+        'api-auth': 'Bearer 5bb200097db507149612d7d983131d06c79706d5'
+        })
     r = http.request('GET', url)
     times = 10
     while r.status != 200 and times != 0:
