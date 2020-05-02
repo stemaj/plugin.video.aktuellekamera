@@ -37,7 +37,9 @@ def getCurrentHeuteJournalMp4(bytes):
     try:
         b = json.loads(bytes)
         return b["priorityList"][0]["formitaeten"][0]["qualities"][0]["audio"]["tracks"][0]["uri"]
-    except TypeError, ValueError:
+    except TypeError:
+        return ""
+    except ValueError:
         return ""
 
 def getCurrentHeuteJournalTitle(bytes):
