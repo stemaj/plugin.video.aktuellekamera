@@ -10,3 +10,9 @@ https://api.zdf.de/tmd/2/zdf_pd_download_1/vod/ptmd/mediathek/200416_sendung_hjo
 file.003
 https://www.zdf.de/nachrichten/heute-sendungen/videos/heute-xpress-aktuelle-sendung-100.html
 
+file.004
+https://www.zdf.de/nachrichten/heute-19-uhr/
+
+file.005
+https://www.zdf.de/nachrichten/heute-19-uhr/200501-heute-sendung-19-uhr-100.html
+

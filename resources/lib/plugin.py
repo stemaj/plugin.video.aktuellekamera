@@ -22,14 +22,31 @@ def loadHeuteJournal():
     b = main.getCurrentHeuteJournalLink(a)
     c = read.load_url(b)
     d = main.getCurrentHeuteJournalJson(c)
-    e = read.load_url(d)
-    return main.HeuteJournal(main.getCurrentHeuteJournalTitle(c), main.getCurrentHeuteJournalMp4(e), main.getCurrentHeuteJournalAge(c))
+    if len(d) > 0:
+        e = read.load_url(d)
+        return main.HeuteJournal(main.getCurrentHeuteJournalTitle(c), main.getCurrentHeuteJournalMp4(e), main.getCurrentHeuteJournalAge(c))
+    else:
+        return main.HeuteJournal("heute journal noch nicht verfügbar", "", "")
+
+def loadHeute19Uhr():
+    a = read.load_url("https://www.zdf.de/nachrichten/heute-19-uhr/")
+    b = main.getCurrentHeute19UhrLink(a)
+    c = read.load_url(b)
+    d = main.getCurrentHeuteJournalJson(c)
+    if len(d) > 0:
+        e = read.load_url(d)
+        return main.HeuteJournal(main.getCurrentHeuteJournalTitle(c), main.getCurrentHeuteJournalMp4(e), main.getCurrentHeuteJournalAge(c))
+    else:
+        return main.HeuteJournal("heute 19 Uhr noch nicht verfügbar", "", "")
 
 def loadHeuteXpress():
     c = read.load_url("https://www.zdf.de/nachrichten/heute-sendungen/videos/heute-xpress-aktuelle-sendung-100.html")
     d = main.getCurrentHeuteJournalJson(c)
-    e = read.load_url(d)
-    return main.HeuteJournal("heute Xpress", main.getCurrentHeuteJournalMp4(e), main.getCurrentHeuteJournalAge(c))
+    if len(d) > 0:
+        e = read.load_url(d)
+        return main.HeuteJournal("heute Xpress", main.getCurrentHeuteJournalMp4(e), main.getCurrentHeuteJournalAge(c))
+    else:
+        return main.HeuteJournal("heute Xpress noch nicht verfügbar", "", "")
 
 @plugin.route('/')
 def index():
@@ -38,6 +55,11 @@ def index():
     hjL = ListItem(hj.name)
     hjL.setInfo('video', infoLabels={'plot': hj.age})
     addDirectoryItem(plugin.handle, hj.mp4link, hjL)
+
+    h19 = loadHeute19Uhr()
+    h19L = ListItem(h19.name)
+    h19L.setInfo('video', infoLabels={'plot': h19.age})
+    addDirectoryItem(plugin.handle, h19.mp4link, h19L)
 
     hx = loadHeuteXpress()
     hxL = ListItem(hx.name)

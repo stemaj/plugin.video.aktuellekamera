@@ -12,8 +12,14 @@ class HeuteJournal():
 def getCurrentHeuteJournalLink(bytes):
     return "https://www.zdf.de" + str(re.compile("href=\"(.+)\" title=\"heute journal").findall(bytes.decode('utf-8'))[0])
 
+def getCurrentHeute19UhrLink(bytes):
+    return "https://www.zdf.de" + str(re.compile("href=\"(.+)\" title=\"ZDF heute").findall(bytes.decode('utf-8'))[0])
+
 def getCurrentHeuteJournalJson(bytes):
-    return str(re.compile("contentUrl\": \"(.+)\"").findall(bytes.decode('utf-8'))[0])
+    data = re.compile("contentUrl\": \"(.+)\"").findall(bytes.decode('utf-8'))
+    if len(data) > 0:
+        return str(data[0])
+    return ""
 
 def getCurrentHeuteJournalAge(bytes):
     a = str(re.compile("uploadDate\": \"(.+)\.\d\d\d\+02:00\"").findall(bytes.decode('utf-8'))[0])
@@ -28,8 +34,11 @@ def getCurrentHeuteJournalAge(bytes):
     return str.format('Erschienen vor {:02} Stunden und {:02} Minuten', int(hours), int(minutes))
 
 def getCurrentHeuteJournalMp4(bytes):
-    b = json.loads(bytes)
-    return b["priorityList"][0]["formitaeten"][0]["qualities"][0]["audio"]["tracks"][0]["uri"]
+    try:
+        b = json.loads(bytes)
+        return b["priorityList"][0]["formitaeten"][0]["qualities"][0]["audio"]["tracks"][0]["uri"]
+    except TypeError, ValueError:
+        return ""
 
 def getCurrentHeuteJournalTitle(bytes):
     return str(re.compile("title\" content=\"(.+)\" />").findall(bytes.decode('utf-8'))[0])

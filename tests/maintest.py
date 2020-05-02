@@ -28,4 +28,21 @@ class Test_ParseFiles(unittest.TestCase):
         c = main.getCurrentHeuteJournalJson(a)
         self.assertEqual(c,"https://api.zdf.de/tmd/2/zdf_pd_download_1/vod/ptmd/mediathek/200417_1949_hko")
 
+    def test_file004(self):
+        a = read.load_file('004')
+        b = main.getCurrentHeute19UhrLink(a)
+        self.assertEqual(b,"https://www.zdf.de/nachrichten/heute-19-uhr/200501-heute-sendung-19-uhr-100.html")
+
+    def test_file005(self):
+        a = read.load_file('005')
+        b = main.getCurrentHeuteJournalTitle(a)
+        self.assertEqual(b,"ZDF heute Sendung vom 01.05.2020")
+        c = main.getCurrentHeuteJournalJson(a)
+        self.assertEqual(c,"https://api.zdf.de/tmd/2/zdf_pd_download_1/vod/ptmd/mediathek/200501_sendung_h19")
+        d = main.getCurrentHeuteJournalAge(a)
+        self.assertEqual(d[:15],"Erschienen vor ")
+
+    def test_errorCases(self):
+        cErr = main.getCurrentHeuteJournalJson(bytearray(0))
+        self.assertEqual(cErr,"")
 
