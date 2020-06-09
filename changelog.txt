@@ -6,3 +6,5 @@ v0.0.3
 - added heute, availability check
 v0.0.4
 - api header
+v0.0.5
+- changed bearer id
