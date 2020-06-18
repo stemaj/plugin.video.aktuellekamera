@@ -46,3 +46,5 @@ class Test_ParseFiles(unittest.TestCase):
         cErr = main.getCurrentHeuteJournalJson(bytearray(0))
         self.assertEqual(cErr,"")
 
+    # def test_api_auth(self):
+    #     self.assertIsNotNone(read.load_url("https://api.zdf.de/tmd/2/zdf_pd_download_1/vod/ptmd/mediathek/200417_1949_hko"))

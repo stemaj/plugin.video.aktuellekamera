@@ -8,3 +8,5 @@ v0.0.4
 - api header
 v0.0.5
 - changed bearer id
+v0.0.6
+- added accept header
