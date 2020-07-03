@@ -23,8 +23,15 @@ def loadHeuteJournal():
     c = read.load_url(b)
     d = main.getCurrentHeuteJournalJson(c)
     if len(d) > 0:
-        e = read.load_url(d)
-        return main.HeuteJournal(main.getCurrentHeuteJournalTitle(c), main.getCurrentHeuteJournalMp4(e), main.getCurrentHeuteJournalAge(c))
+        e = read.load_url(d, True)
+        if e:
+          return main.HeuteJournal(main.getCurrentHeuteJournalTitle(c), main.getCurrentHeuteJournalMp4(e), main.getCurrentHeuteJournalAge(c))
+        else:
+          v = main.getCurrentHeuteJournalTitle(c)
+          dmy = main.getDayMonthYearFromTitle(v)
+          str = "https://downloadzdf-a.akamaihd.net/mp4/zdf/" + dmy[2] + "/" + dmy[1] + "/" + dmy[2] + dmy[1] + dmy[0]+ "_sendung_hjo/3/" + dmy[2] + dmy[1] + dmy[0] +  "_sendung_hjo_3328k_p15v15.mp4"
+          return main.HeuteJournal(v, str, main.getCurrentHeuteJournalAge(c))
+          
     else:
         return main.HeuteJournal("heute journal noch nicht verfügbar", "", "")
 
@@ -34,7 +41,7 @@ def loadHeute19Uhr():
     c = read.load_url(b)
     d = main.getCurrentHeuteJournalJson(c)
     if len(d) > 0:
-        e = read.load_url(d)
+        e = read.load_url(d, True)
         return main.HeuteJournal(main.getCurrentHeuteJournalTitle(c), main.getCurrentHeuteJournalMp4(e), main.getCurrentHeuteJournalAge(c))
     else:
         return main.HeuteJournal("heute 19 Uhr noch nicht verfügbar", "", "")
@@ -43,7 +50,7 @@ def loadHeuteXpress():
     c = read.load_url("https://www.zdf.de/nachrichten/heute-sendungen/videos/heute-xpress-aktuelle-sendung-100.html")
     d = main.getCurrentHeuteJournalJson(c)
     if len(d) > 0:
-        e = read.load_url(d)
+        e = read.load_url(d, True)
         return main.HeuteJournal("heute Xpress", main.getCurrentHeuteJournalMp4(e), main.getCurrentHeuteJournalAge(c))
     else:
         return main.HeuteJournal("heute Xpress noch nicht verfügbar", "", "")

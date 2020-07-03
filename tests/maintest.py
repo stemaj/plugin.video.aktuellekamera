@@ -42,9 +42,11 @@ class Test_ParseFiles(unittest.TestCase):
         d = main.getCurrentHeuteJournalAge(a)
         self.assertEqual(d[:15],"Erschienen vor ")
 
-    def test_errorCases(self):
-        cErr = main.getCurrentHeuteJournalJson(bytearray(0))
-        self.assertEqual(cErr,"")
 
-    # def test_api_auth(self):
-    #     self.assertIsNotNone(read.load_url("https://api.zdf.de/tmd/2/zdf_pd_download_1/vod/ptmd/mediathek/200417_1949_hko"))
+    def test_date(self):
+        dmy = main.getDayMonthYearFromTitle("ZDF heute Sendung vom 01.05.2020")
+        self.assertEqual(dmy[0], "01")
+        self.assertEqual(dmy[1], "05")
+        self.assertEqual(dmy[2], "20")
+
+
