@@ -1,8 +1,8 @@
 import io
 import urllib3
 import time
-import xbmc
-import xbmcgui
+#import xbmc
+#import xbmcgui
 
 def load_file(fileSuffix):
     with io.open('tests/file.'+fileSuffix, 'rb') as fo:
@@ -43,12 +43,12 @@ def load_url(url,apiRequest = False):
     http = urllib3.PoolManager(maxsize=10, headers=headers)
     r = http.request('GET', url)
 
-    if apiRequest:
-      xbmc.log("request status api " + str(r.status), xbmc.LOGFATAL)
-    else:
-      xbmc.log("request status " + str(r.status), xbmc.LOGFATAL)
+    #if apiRequest:
+      #xbmc.log("request status api " + str(r.status), xbmc.LOGFATAL)
+    #else:
+      #xbmc.log("request status " + str(r.status), xbmc.LOGFATAL)
 
     if (r.status == 200 or r.status == 304):
         return r.data
-    else:
-        xbmcgui.Dialog().notification("Http Request scheiterte", "Status " + str(r.status))
+    #else:
+        #xbmcgui.Dialog().notification("Http Request scheiterte", "Status " + str(r.status))

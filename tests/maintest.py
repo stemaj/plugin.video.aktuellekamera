@@ -44,9 +44,11 @@ class Test_ParseFiles(unittest.TestCase):
 
 
     def test_date(self):
-        dmy = main.getDayMonthYearFromTitle("ZDF heute Sendung vom 01.05.2020")
-        self.assertEqual(dmy[0], "01")
-        self.assertEqual(dmy[1], "05")
-        self.assertEqual(dmy[2], "20")
+        ymdhm = main.getYMDHMfromApiLink("https://api.zdf.de/tmd/2/zdf_pd_download_1/vod/ptmd/mediathek/200707_1106_hko")
+        self.assertEqual(ymdhm[0], "20")
+        self.assertEqual(ymdhm[1], "07")
+        self.assertEqual(ymdhm[2], "07")
+        self.assertEqual(ymdhm[3], "11")
+        self.assertEqual(ymdhm[4], "06")
 
 

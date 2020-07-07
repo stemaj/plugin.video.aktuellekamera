@@ -11,6 +11,8 @@ from xbmcplugin import addDirectoryItem, endOfDirectory
 from resources.lib import main
 from resources.lib import read
 
+#import xbmc
+
 ADDON = xbmcaddon.Addon()
 logger = logging.getLogger(ADDON.getAddonInfo('id'))
 kodilogging.config()
@@ -22,15 +24,15 @@ def loadHeuteJournal():
     b = main.getCurrentHeuteJournalLink(a)
     c = read.load_url(b)
     d = main.getCurrentHeuteJournalJson(c)
+    #xbmc.log("#########" + d, xbmc.LOGFATAL)
     if len(d) > 0:
         e = read.load_url(d, True)
         if e:
           return main.HeuteJournal(main.getCurrentHeuteJournalTitle(c), main.getCurrentHeuteJournalMp4(e), main.getCurrentHeuteJournalAge(c))
         else:
-          v = main.getCurrentHeuteJournalTitle(c)
-          dmy = main.getDayMonthYearFromTitle(v)
-          str = "https://downloadzdf-a.akamaihd.net/mp4/zdf/" + dmy[2] + "/" + dmy[1] + "/" + dmy[2] + dmy[1] + dmy[0]+ "_sendung_hjo/3/" + dmy[2] + dmy[1] + dmy[0] +  "_sendung_hjo_3328k_p15v15.mp4"
-          return main.HeuteJournal(v, str, main.getCurrentHeuteJournalAge(c))
+          ymdhm = main.getYMDHMfromApiLink(d)
+          str = "https://downloadzdf-a.akamaihd.net/mp4/zdf/" + ymdhm[0] + "/" + ymdhm[1] + "/" + ymdhm[0] + ymdhm[1] + ymdhm[2]+ "_sendung_hjo/3/" + ymdhm[0] + ymdhm[1] + ymdhm[2] +  "_sendung_hjo_3328k_p15v15.mp4"
+          return main.HeuteJournal(main.getCurrentHeuteJournalTitle(c), str, main.getCurrentHeuteJournalAge(c))
           
     else:
         return main.HeuteJournal("heute journal noch nicht verfügbar", "", "")
@@ -42,7 +44,12 @@ def loadHeute19Uhr():
     d = main.getCurrentHeuteJournalJson(c)
     if len(d) > 0:
         e = read.load_url(d, True)
-        return main.HeuteJournal(main.getCurrentHeuteJournalTitle(c), main.getCurrentHeuteJournalMp4(e), main.getCurrentHeuteJournalAge(c))
+        if e:
+          return main.HeuteJournal(main.getCurrentHeuteJournalTitle(c), main.getCurrentHeuteJournalMp4(e), main.getCurrentHeuteJournalAge(c))
+        else:
+          ymdhm = main.getYMDHMfromApiLink(d)
+          str = "https://downloadzdf-a.akamaihd.net/mp4/zdf/" + ymdhm[0] + "/" + ymdhm[1] + "/" + ymdhm[0] + ymdhm[1] + ymdhm[2]+ "_sendung_h19/3/" + ymdhm[0] + ymdhm[1] + ymdhm[2] +  "_sendung_h19_3328k_p15v15.mp4"
+          return main.HeuteJournal(main.getCurrentHeuteJournalTitle(c), str, main.getCurrentHeuteJournalAge(c))
     else:
         return main.HeuteJournal("heute 19 Uhr noch nicht verfügbar", "", "")
 
@@ -51,7 +58,12 @@ def loadHeuteXpress():
     d = main.getCurrentHeuteJournalJson(c)
     if len(d) > 0:
         e = read.load_url(d, True)
-        return main.HeuteJournal("heute Xpress", main.getCurrentHeuteJournalMp4(e), main.getCurrentHeuteJournalAge(c))
+        if e:
+          return main.HeuteJournal("heute Xpress", main.getCurrentHeuteJournalMp4(e), main.getCurrentHeuteJournalAge(c))
+        else:
+          ymdhm = main.getYMDHMfromApiLink(d)
+          str = "https://downloadzdf-a.akamaihd.net/mp4/zdf/" + ymdhm[0] + "/" + ymdhm[1] + "/" + ymdhm[0] + ymdhm[1] + ymdhm[2]+ "_" +  ymdhm[3]+  ymdhm[4]+ "_hko/1/" + ymdhm[0] + ymdhm[1] + ymdhm[2] + "_" +  ymdhm[3]+  ymdhm[4]+ "_hko_3328k_p15v15.mp4"
+          return main.HeuteJournal("heute Xpress", str, main.getCurrentHeuteJournalAge(c))
     else:
         return main.HeuteJournal("heute Xpress noch nicht verfügbar", "", "")
 
