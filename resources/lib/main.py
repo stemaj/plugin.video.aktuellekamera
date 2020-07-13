@@ -44,8 +44,3 @@ def getCurrentHeuteJournalMp4(bytes):
 
 def getCurrentHeuteJournalTitle(bytes):
     return str(re.compile("title\" content=\"(.+)\" />").findall(bytes.decode('utf-8'))[0])
-
-def getYMDHMfromApiLink(str):
-    data = re.compile("(\d\d)").findall(str)
-    #data[2] = data[2][-2:]
-    return data

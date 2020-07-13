@@ -1,4 +1,5 @@
 import io
+import re
 import urllib3
 import time
 #import xbmc
@@ -52,3 +53,25 @@ def load_url(url,apiRequest = False):
         return r.data
     #else:
         #xbmcgui.Dialog().notification("Http Request scheiterte", "Status " + str(r.status))
+
+
+def getYMDHMfromApiLink(str):
+    data = re.compile("(\d\d)").findall(str)
+    #data[2] = data[2][-2:]
+    return data
+
+def getVideoLinkByTryingFromApiLink(d,i):
+    ymdhm = getYMDHMfromApiLink(d)
+    for x in range(9):
+      if i == 0:
+        link = "https://downloadzdf-a.akamaihd.net/mp4/zdf/" + ymdhm[0] + "/" + ymdhm[1] + "/" + ymdhm[0] + ymdhm[1] + ymdhm[2]+ "_sendung_hjo/" + str(x) + "/" + ymdhm[0] + ymdhm[1] + ymdhm[2] +  "_sendung_hjo_3328k_p15v15.mp4"
+      if i == 1:
+        link = "https://downloadzdf-a.akamaihd.net/mp4/zdf/" + ymdhm[0] + "/" + ymdhm[1] + "/" + ymdhm[0] + ymdhm[1] + ymdhm[2]+ "_sendung_h19/" + str(x) + "/" + ymdhm[0] + ymdhm[1] + ymdhm[2] +  "_sendung_h19_3328k_p15v15.mp4"
+      if i == 2:
+        link = "https://downloadzdf-a.akamaihd.net/mp4/zdf/" + ymdhm[0] + "/" + ymdhm[1] + "/" + ymdhm[0] + ymdhm[1] + ymdhm[2]+ "_" +  ymdhm[3]+  ymdhm[4]+ "_hko/" + str(x) + "/" + ymdhm[0] + ymdhm[1] + ymdhm[2] + "_" +  ymdhm[3]+  ymdhm[4]+ "_hko_3328k_p15v15.mp4"
+      http = urllib3.PoolManager()
+      r = http.request('GET', link, preload_content=False)
+      #xbmc.log("#status#######link#"+ link + " ssssssss " + str(r.status), xbmc.LOGFATAL)
+      if r.status == 200:
+        return link
+    return ""
