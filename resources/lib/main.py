@@ -22,6 +22,7 @@ def getCurrentHeuteJournalJson(bytes):
     return ""
 
 def getCurrentHeuteJournalAge(bytes):
+    return "TODO"
     a = str(re.compile("uploadDate\": \"(.+)\.\d\d\d\+02:00\"").findall(bytes.decode('utf-8'))[0])
     try:
         b = datetime.datetime.strptime(a, "%Y-%m-%dT%H:%M:%S")
